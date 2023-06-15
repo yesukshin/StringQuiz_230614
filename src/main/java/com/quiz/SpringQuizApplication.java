@@ -1,11 +1,10 @@
 package com.quiz;//base package
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+@MapperScan(basePackages = "com.quiz.*") // DB중에 레퍼지토리를 찾기위한 어노테이션
 @SpringBootApplication
 public class SpringQuizApplication {
 
