@@ -28,9 +28,22 @@ public class RealEstateBO {
 		return realEstateMapper.selectRealEstateListByRentPrice(rentPrice);
 	}
 	
+	// input : int area, int Price
+    // output: List<RealEstate>를 controller한테 보냄 
 	public List<RealEstate> getRealEstateByRentArea(int area, int price){
 		
 		return realEstateMapper.selectRealEstateListByArea(area,price);
 		
+	}
+
+	public int addrealEstate(RealEstate realestate) {
+		
+		return realEstateMapper.insertRealEstate(realestate);
+	}
+    
+	
+	public int addRealEstateAsField(int realtorId, String address, int area, String type, int price, Integer rent_price) {
+		
+		return realEstateMapper.insertRealEstateAsField(realtorId, address, area, type, price, rent_price) ;
 	}
 }

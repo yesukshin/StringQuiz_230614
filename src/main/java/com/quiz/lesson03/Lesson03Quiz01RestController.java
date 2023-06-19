@@ -11,12 +11,13 @@ import com.quiz.lesson03.bo.RealEstateBO;
 import com.quiz.lesson03.domain.RealEstate;
 
 @RestController
+@RequestMapping("/lesson03/quiz01")
 public class Lesson03Quiz01RestController {
 	
 	@Autowired
 	private RealEstateBO realEstateBo;	
 	
-	@RequestMapping("/lesson03/quiz01/1")
+	@RequestMapping("/1")
 	public RealEstate quiz01_1(
 			@RequestParam(value = "id") int id) {
 		
@@ -24,7 +25,7 @@ public class Lesson03Quiz01RestController {
 		
 	}
 	
-	@RequestMapping("/lesson03/quiz01/2")
+	@RequestMapping("/2")
 	public List<RealEstate> quiz01_2(
 			@RequestParam(value = "rentPrice") int rentPrice) {
 		
@@ -32,7 +33,7 @@ public class Lesson03Quiz01RestController {
 		
 	}
 	
-	@RequestMapping("/lesson03/quiz01/3")
+	@RequestMapping("/3")
 	public List<RealEstate> quiz01_3(
 			@RequestParam(value = "area") int area,
 			@RequestParam(value = "price") int price) {
