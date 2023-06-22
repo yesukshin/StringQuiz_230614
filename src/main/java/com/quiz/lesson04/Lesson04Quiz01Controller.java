@@ -17,6 +17,7 @@ public class Lesson04Quiz01Controller {
 	
 	@Autowired
 	private SellerBO sellerBO;
+	
 	//판매자 추가페이지
 	//주소를 치고 들어오는 get방식
 	@GetMapping("/add_seller_view")
@@ -41,6 +42,16 @@ public class Lesson04Quiz01Controller {
 		
 	}
 	
+	/*최근가입자 정보 페이지 
+	@GetMapping("/seller_info")
+	public String sellerInfo(Model model) {
+		
+		Seller seller = sellerBO.getLatestSeller();
+		model.addAttribute("seller",seller );
+		
+		return "lesson04/sellerInfo";
+		
+	}*/
 	//최근가입자 정보 페이지 
 	@GetMapping("/seller_info")
 	public String sellerInfo(
@@ -53,7 +64,7 @@ public class Lesson04Quiz01Controller {
 			seller = sellerBO.getLatestSeller();
 		}else {
 			// id 있는 경우
-			seller = sellerBO.getSellerById(id);
+			seller = sellerBO.getSellerById(id);	
 		}
 		
 		model.addAttribute("seller",seller);
