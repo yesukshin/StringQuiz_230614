@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,29 +18,36 @@
 	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
 	crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<title>HOT 5</title>
+<title>후보자득표율</title>
 </head>
-	<body>
-		<div class="container">
-			<h1>HOT 5</h1>
+<body>
+	<div class="container">
+		<h1> 2. 카드명세서 </h1>
 			<table class="table text-center">
-		 		<thead>
-					<tr class="row">
-						<th class="col-3">순위</th>
-						<th class="col-9">제목</th>
-		     		</tr>
+				<thead>
+				<tr>
+					<th>사용처</th>
+					<th>가격</th>
+					<th>사용날짜</th>	
+					<th>할부</th>						
+				</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${musicRanking}" var="music" varStatus="status">
-						<tr class="row">
-							<td class="col-3">${status.count}</td>
-							<td class="col-9">${music}</td>
-		     			</tr>
-		     		</c:forEach>
-				</thead>
-			</table>	
-		</div>	
-	</body>
+				<c:forEach items="${cardBills}" var="bill" varStatus="status">
+					<tr>
+						<td>${bill.store}</td>
+						<td>
+						<fmt:formatNumber type="currency" value="${bill.pay}"/>						
+						</td>						
+						<td>
+						<fmt:parseDate value="${bill.date}" pattern="yyyy-MM-dd" var="date"/>						
+						<fmt:formatDate value="${date}" pattern="yyyy년 M월 dd일" />	
+						</td>
+						<td>${bill.installment}</td>
+					</tr>
+				</c:forEach>		
+				</tbody>	
+			</table>
+	</div>
+</body>
 </html>
-
-
