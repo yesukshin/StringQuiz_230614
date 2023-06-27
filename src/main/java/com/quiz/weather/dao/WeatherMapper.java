@@ -10,5 +10,6 @@ import com.quiz.weather.domain.Weather;
 public interface WeatherMapper {
 	
 	public List<Weather> selectWeather();
+	public void insertWeather(Weather weather);
 
 }

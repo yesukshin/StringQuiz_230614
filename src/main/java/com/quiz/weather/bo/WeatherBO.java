@@ -18,5 +18,10 @@ public class WeatherBO {
 		
 		return weatherMapper.selectWeather();
 	}
-
+    
+	public void addWeather(Weather weather) {
+		
+		weatherMapper.insertWeather(weather);
+		
+	}
 }

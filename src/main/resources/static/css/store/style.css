@@ -1,0 +1,43 @@
+@charset "UTF-8";
+#wrap {
+    width:1000px;
+    margin:auto;
+}
+
+header {
+    height:100px;
+    background-color: #188CC2;
+    width:800px;
+}
+
+section > .input-box {
+    width:800px;
+}
+
+.goods-box {
+    border: 2px solid coral;
+    padding:10px;
+}
+
+.goods-box:hover {
+    background-color:#ffebe3;
+}
+
+
+.goods-box > .title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.goods-box > .price {
+    color: gray;
+}
+
+.goods-box > .seller {
+    font-size: 18px;
+    color:coral;
+}
+
+footer {
+    height:80px;
+}

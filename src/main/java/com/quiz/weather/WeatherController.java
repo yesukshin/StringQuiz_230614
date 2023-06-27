@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.quiz.lesson02.domain.Stores;
 import com.quiz.weather.bo.WeatherBO;
 import com.quiz.weather.domain.Weather;
 
@@ -19,15 +20,16 @@ public class WeatherController {
 	@Autowired
 	WeatherBO weatherBO;
 	
+	//입력화면 호출
 	@GetMapping("/add_weather_view")
 	public String addWeatherView() {
-		//입력화면 호출
+		
 		return  "weather/addWeather";
 		
 	}
 	
 	//조회
-	@GetMapping("/list_weather")
+	@GetMapping("/weather_history_view")
 	public String listWeather(
 			Model model) {  	
 		//DB 조회
@@ -37,4 +39,16 @@ public class WeatherController {
 		//조회화면 호출
 		return "weather/weatherInfo";
 	}
+	
+	//입력처리
+	@PostMapping("/add_Weather")
+	public String addWeather(
+			@ModelAttribute Weather weather) {
+		
+		weatherBO.addWeather(weather);
+		
+		return "redirect:weather_history_view";
+		
+	}
+	
 }

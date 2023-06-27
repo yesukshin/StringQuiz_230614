@@ -4,13 +4,20 @@
  <mapper namespace="com.quiz.weather.dao.WeatherMapper">
 	<select id="selectWeather" resultType="com.quiz.weather.domain.Weather">
 	  SELECT  
-			`date`
+			 DATE_FORMAT(date, '%Y-%m-%d') as date
 			,`weather`
 			,`temperatures`
 			,`precipitation`
 			,`microDust`
 			,`windSpeed`
-       FROM weatherhistory			
+       FROM `weatherhistory` 
+       ORDER BY `date` DESC		
 	</select>
+	<insert  id="insertWeather" parameterType="com.quiz.weather.domain.Weather">
+	INSERT INTO `weatherhistory`	
+	(`date`,`weather`,`temperatures`,`precipitation`,`microDust`,`windSpeed`,`createdAt`, `updatedAt`)
+	VALUES
+	(STR_TO_DATE(#{date}, '%Y%m%d%H%i%s'),#{weather},#{temperatures},#{precipitation},#{microDust},#{windSpeed},NOW(), NOW())
+	</insert>
 </mapper>		
     		
