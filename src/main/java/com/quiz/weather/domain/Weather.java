@@ -5,9 +5,10 @@ import java.util.Date;
 public class Weather {
 	
 	private int id;
+	//private Date @DateTimeFormat(pattern="yyyy-MM-dd")
 	private String date;
 	private String weather;
-	private double temperatures;
+	private double temperatures; //null값 허용안하므로 double, null허용이면 DOUBLE
 	private double precipitation;
 	private String microDust;
 	private double windSpeed;
@@ -67,7 +68,4 @@ public class Weather {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
-	
 }

@@ -4,7 +4,7 @@
  <mapper namespace="com.quiz.weather.dao.WeatherMapper">
 	<select id="selectWeather" resultType="com.quiz.weather.domain.Weather">
 	  SELECT  
-			 DATE_FORMAT(date, '%Y-%m-%d') as date
+			 DATE_FORMAT(date, '%Y년 %m월 %d일') as date
 			,`weather`
 			,`temperatures`
 			,`precipitation`

@@ -56,20 +56,23 @@
 				       ${weather.date}
 				       </td>
 				       <td>	      
-				       <c:choose>
-					     <c:when test="${weather.weather == '맑음' }">
-					     <img src="/image/sunny.jpg">
-					     </c:when>
-					     <c:when test="${weather.weather == '구름조금' }">
-					     <img src="/image/partlyCloudy.jpg">
-					     </c:when>
-					     <c:when test="${weather.weather == '흐림' }">
-					     <img src="/image/cloudy.jpg">
-					     </c:when>
-					     <c:when test="${weather.weather == '비' }">
-					     <img src="/image/rainy.jpg">
-					     </c:when>
-					   </c:choose>  
+					       <c:choose>
+						   	 <c:when test="${weather.weather == '맑음' }">
+						     	<img src="/image/sunny.jpg" alt="맑음">
+						     </c:when>
+						     <c:when test="${weather.weather == '구름조금' }">
+						     	<img src="/image/partlyCloudy.jpg" alt="구름조금">
+						     </c:when>
+						     <c:when test="${weather.weather == '흐림' }">
+						     	<img src="/image/cloudy.jpg" alt="흐림">
+						     </c:when>
+						     <c:when test="${weather.weather == '비' }">
+						     	<img src="/image/rainy.jpg" alt="비">
+						     </c:when>
+						     <c:otherwise>
+						     	${weather.weather}
+						     </c:otherwise>	
+						   </c:choose>  
 				       </td>
 				       <td>${weather.temperatures}℃</td>
 				       <td>${weather.precipitation}mm</td>

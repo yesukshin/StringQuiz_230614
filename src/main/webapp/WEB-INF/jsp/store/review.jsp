@@ -32,15 +32,14 @@
 		    
 			<%-- 가게정보   mt-4 d-flex justify-content-center --%>
 			<section class="col-10 mt-3 justify-content-center">	
-			<h1>우리동네 가게</h1>		    
+			
 				<div>
-					<c:forEach items="${result}" var="store">
+				<h1>리뷰 ${review.storeName}</h1>		    
+					<c:forEach items="${result}" var="review">
 						<div class="goods-box mb-3 mr-2">
-						<a href="/store/review_list_view?storeId=${store.Id}&storeName=${store.name}">
-						    <b>${store.name}</b><br> 
-							<b>${store.phoneNumber}</b><br>
-							<b>${store.address}</b><br>						
-						</a>							
+							<b>${review.storeId}</b><br> 
+							<b>${review.menu}</b><br>
+							<b>${review.review}</b><br>
 						</div>
 					</c:forEach>
 				</div>

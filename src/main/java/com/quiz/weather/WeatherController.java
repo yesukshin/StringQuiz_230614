@@ -47,8 +47,19 @@ public class WeatherController {
 		
 		weatherBO.addWeather(weather);
 		
-		return "redirect:weather_history_view";
+		return "redirect:weather_history_view"; //이미있는 페이지로 리다이렉트
 		
 	}
+	
+	//입력처리
+//		@PostMapping("/add_Weather")
+//		public String addWeather(
+//				@RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date date ) {//date형으로 바꿔서 가져온다
+//			    @RequestParam("date") String date ) {//param을 각각 가져오면서 date를 string으로 바꿔서 가져온다 
+//			weatherBO.addWeather(weather);
+//			
+//			return "redirect:weather_history_view";//이미있는페이지로 리다이렉트
+//			
+//		}
 	
 }
