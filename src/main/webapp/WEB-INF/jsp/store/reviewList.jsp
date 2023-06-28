@@ -24,25 +24,34 @@
 <body>
 	<div id="wrap">
 		<header class="col-10 d-flex justify-content-center align-items-center">
-			<P>
+			
 			    <h1 class="text-white">배탈의 민족</h1>
-			</P>
+			
 		</header>
 		<div class="contents d-flex">		    
 			<%-- 가게정보   mt-4 d-flex justify-content-center --%>
-			<section class="col-10 mt-3 justify-content-center ">	
-			<h1>우리동네 가게</h1>		    
+			<section class="col-10 mt-3 justify-content-center">	
+			    <h1>${name} 리뷰</h1>
 				<div>
-					<c:forEach items="${result}" var="store">
-						<div class="goods-box mb-3 mr-2">
-							<a href="/store/review_list_view?storeId=${store.id}&name=${store.name}">
-							    <h3 class="text-dark"><b>${store.name}</b></h3><br>
-								<h5 class="text-dark">전화번호 : ${store.phoneNumber}<h5>
-								<h5 class="text-dark">주소 : ${store.address}</h5><br>			
-							</a>							
-						</div>
-					</c:forEach>
-				</div>
+				    <c:choose>
+				       	<c:when test = "${empty result}">
+				    		<div class="mt-4">
+								<h4><b>작성된 리뷰가 없습니다.</b></h4>	
+				    		</div>
+				    	</c:when>
+				    	<c:otherwise>
+				    		<c:forEach items="${result}" var="review">
+								<div class="goods-box1 mb-3 mr-2">
+									<b>${review.userName}</b> 
+									<b>${review.point}</b><br>
+									<fmt:formatDate value="${review.createdAt}" pattern="yyyy년 MM월 dd일" /><br> 
+									${review.review}<br>
+									<div style="border:0px;border-radius:5px;background-color:lightgrey;margin:6px;padding:4px;width:40%">${review.menu}<br></div>
+								</div>
+							</c:forEach>
+				    	</c:otherwise>
+					</c:choose>		
+				</div>					
 			</section>
 		</div>
 		<footer class="d-flex align-items-center">
@@ -52,7 +61,6 @@
 			  	<small class="text-dark"> 고객센터 1500-1500					
 				</small>
 			</div>
-		</footer>
 	</div>
 </body>
 </html>

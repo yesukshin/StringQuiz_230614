@@ -10,34 +10,22 @@ header {
     width:800px;
 }
 
-section > .input-box {
-	
-    width:800px;
-}
+
+
 
 .goods-box {
     border: 2px solid #188CC2;
     padding: 20px 90px;;
 }
 
+.goods-box1 {
+    border: 2px solid #188CC2;
+    padding: 20px 90px;;
+}
 .goods-box:hover {
-    background-color:#ffebe3;
+    background-color:#fbe3ff;
 }
 
-
-.goods-box > .title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.goods-box > .price {
-    color: gray;
-}
-
-.goods-box > .seller {
-    font-size: 18px;
-    color:coral;
-}
 
 footer {
     height:80px;

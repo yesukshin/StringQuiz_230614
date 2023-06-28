@@ -38,14 +38,13 @@ public class StoreController {
 	
 	@GetMapping("/review_list_view")
 	public String getReviewList(@RequestParam("storeId") int storeId,
-			@RequestParam("storeName") String storeName,
+			@RequestParam(value="name",required=false) String name,
 			Model model) {
 		
 		List<Review> reviewList = reviewBO.getReviewList(storeId);
 		
 		model.addAttribute("result", reviewList);
-		model.addAttribute("storeName", storeName);
-		
+		model.addAttribute("name", name);
 		
 		return "store/reviewList";
 	}
