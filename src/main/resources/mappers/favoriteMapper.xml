@@ -11,4 +11,12 @@
 <select id = "selectBookmark" resultType ="com.quiz.lesson06.domain.Favorite">
 	select `id`, `name`, `url` from `favorite`
 </select>
+
+<select id = "existUrlbyAddr" resultType ="boolean">
+	select count(1) from `favorite` where  `url` = #{url}
+</select>
+
+<select id ="deleteById" parameterType = "map" >
+	DELETE FROM  `favorite` WHERE `id` = #{id}
+</select>
 </mapper>

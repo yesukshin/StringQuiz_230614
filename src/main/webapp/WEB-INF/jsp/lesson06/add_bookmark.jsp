@@ -21,24 +21,33 @@
 <body>
 	<div class="container">
 		<h1>즐겨찾기 추가하기</h1>
-		<!--<form method="post" action="/lesson06/quiz01/add_user">  -->
+		
 			<div class="form-group">
-				<label for="name">제목</label> <input type="text" id="name"
-					name="name" class="form-controll col-10" placeholder="제목을 입력하세요">
+				<label for="name">제목</label> 
+				<input type="text" id="name" class="form-control" placeholder="제목을 입력하세요">
 			</div>
-			<div class="form-group">
-				<label for="url">주소</label> <input type="text" id="url"
-					name="url" class="form-controll col-10" placeholder="주소를 입력하세요">
+			<div class="d-flex">
+				<div class="form-group">
+					<label for="url">주소</label> 
+					<input type="text" id="url"	class="form-control" placeholder="주소를 입력하세요">
+				</div>			
+				<button type="button" id="dupChkBtn" class="btn btn-warning">중복확인</button>
+				
 			</div>
+			<small id="urlchkArea"></small>
 			<!-- AJAX통신을 호출할때는 반드시 버튼을 button타입으로 지정한다(form -->
 			<!-- <input type="submit" class="btn btn-info" value="회원가입"> -->
-			<input type="button" id="addBtn" class="btn btn-info" value="추가">
-		<!-- </form> -->
+			<button type="button" id="addBtn" class="btn btn-success btn-block">추가</button>
+	
 	</div>
 
 	<script>
+	//validation
+	
 		$(document).ready(function() {
-			$('#addBtn').on('click', function() {
+			
+	 		//추가버튼 클릭시 validation체크
+			 $('#addBtn').on('click', function() {
 
 				//validation
 				let name = $('#name').val().trim();
@@ -57,9 +66,9 @@
 					return;					
 				}
 				
-				if(!url.startsWith("http") && !url.startsWith("https")){
-					alert("주소를 확인하세요");
-					return;	
+				if (url.startsWith('http://') == false && url.startsWith("https://") == false) {
+					alert("주소 형식이 잘못 되었습니다.");
+					return;
 				}
 
 				 $.ajax({
@@ -72,18 +81,50 @@
 					},
 					// response 
 					success : function(data) {
-						if (data == "성공") {
+						if (data.result == "성공") {
 							location.href = "/lesson06/quiz01/bookmark_list_view";
 						} else {
 							alert("북마크오류 실패했습니다.");
 						}
 					},
 					error : function(xhr, status, error) {
-						alert("북마크 오류");
+						alert("즐겨찾기 추가하는데 실패했습니다.");
 					}
 				});
 			});
+			
+		// 중복확인 버튼 클릭시 url중복확인
+		$('#dupChkBtn').on('click', function() {
+			//validation
+			let name = $('#name').val().trim();
+			let url = $('#url').val().trim();
+		
+			 $.ajax({  
+					// request
+					type : "GET",
+					url : "/lesson06/quiz01/is_Duplication",
+					data : {
+						
+						"url"  : url
+					},
+					// response 
+					success : function(data) {
+						if (data.isDuplication) {
+							$('#urlchkArea').empty();
+							$('#urlchkArea').append('<span class="text-danger">중복된 url입니다.</span>');
+							
+						} else {
+							$('#urlchkArea').empty();
+							$('#urlchkArea').append('<span class="text-danger">저장가능한 url입니다.</span>');
+						}
+					},
+					error : function(xhr, status, error) {
+						alert("즐겨찾기 추가하는데 실패했습니다.");
+					}
+				});
+			
 		});
+	});
 	</script>
 </body>
 </html>

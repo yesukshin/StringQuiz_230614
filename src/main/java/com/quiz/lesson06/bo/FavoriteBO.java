@@ -25,5 +25,15 @@ public class FavoriteBO {
     	return  favoriteMapper.selectBookmark();
 		
 	}
+    
+    public boolean existUrlbyAddr(String url) {
+    	
+    	return favoriteMapper.existUrlbyAddr(url);
+    }
+
+	public void deleteById(String id) {
+
+		favoriteMapper.deleteById(id);
+	}
 
 }  

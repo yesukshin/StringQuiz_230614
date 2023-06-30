@@ -1,6 +1,8 @@
 package com.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,16 +31,20 @@ public class Lesson06Quiz01Controller {
 	
 	@PostMapping("/add_bookmark")
 	@ResponseBody
-    public String add_bookmark(
+    public Map<String, Object> add_bookmark(
     		@RequestParam("name") String name,
     		@RequestParam("url") String url) {
 		
 		// DB입력
 		favoriteBO.addBookmark(name, url);
 		
-		// 목록화면으로 리턴		
-		//return "lesson06/bookmark_list";
-		return "성공";
+		// 응답
+		// "{"code":1, "result":"성공"}"    JSON String
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1); 
+		result.put("result", "성공");
+				
+		return result;
 		
 	}
 	
@@ -49,6 +55,34 @@ public class Lesson06Quiz01Controller {
 		model.addAttribute("bookmarkList", bookmarkList);
 		
 		return "lesson06/bookmark_list";
+		
+	}
+	
+	@GetMapping("/is_Duplication")
+	@ResponseBody
+	public Map<String, Object> isDuplication(
+			@RequestParam("url") String url) {
+		
+		boolean isExist = favoriteBO.existUrlbyAddr(url);
+		Map<String, Object> result = new HashMap<>();
+		
+		result.put("isDuplication", isExist);
+		
+		return result;
+		
+	}
+	
+	@GetMapping("/delete_bookmark")
+	@ResponseBody
+	public Map<String, Object> deleteById(
+			@RequestParam("id") String id) {
+		
+		favoriteBO.deleteById(id);
+		Map<String, Object> result = new HashMap<>();
+		
+		result.put("result", "성공");
+		
+		return result;
 		
 	}
 

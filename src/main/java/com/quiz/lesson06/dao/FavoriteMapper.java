@@ -15,5 +15,9 @@ public interface FavoriteMapper {
 
 	List<Favorite> selectBookmark();
 	
+	public boolean existUrlbyAddr(String url);
+
+	void deleteById(@Param("id") String id);
+	
 
 }
